@@ -1,8 +1,8 @@
 import './App.css'
-import { useQuestion } from './hooks/useQuestion';
+import { useQuestion } from '../hooks/useQuestion';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useScore } from './hooks/useScore';
+import { useScore } from '../hooks/useScore';
 
 function Trivia() {
   const {questionList} = useQuestion()
@@ -32,8 +32,8 @@ function Trivia() {
       <h3>Score: {score}</h3>
       <h1>{currentQuestion.question}</h1>
       {
-        currentQuestion.answersList.map((answer) => (
-          <button onClick={() => answerHandler({isCorrect: answer.isCorrect})}>{answer.answer}</button>
+        currentQuestion.answersList.map((answer, index) => (
+          <button key={index} onClick={() => answerHandler({isCorrect: answer.isCorrect})} style={{margin: 10}}>{answer.answer}</button>
         ))
       }
     </div>

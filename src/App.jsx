@@ -3,6 +3,8 @@ import { useForm } from 'react-hook-form';
 import { useQuestion } from './hooks/useQuestion';
 import { useNavigate } from 'react-router-dom';
 
+import { LoginButton } from './Login';
+
 function App() {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const { fetchQuestionList } = useQuestion()
@@ -16,6 +18,7 @@ function App() {
 
   return (
     <div>
+      <LoginButton />
       <h1>Trivia Game</h1>
       <form onSubmit={handleSubmit(onSubmit)} style={{display: "flex", flexDirection: "column", gap: 15}}>
         <label>

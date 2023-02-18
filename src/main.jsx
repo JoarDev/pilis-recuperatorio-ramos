@@ -7,11 +7,18 @@ import Trivia from './Trivia';
 import { QuestionProvider } from './context/questionContext';
 import Result from './Result';
 import { ScoreContext, ScoreProvider } from './context/scoreContext';
+import Form from './Form';
+import { Auth0Provider } from '@auth0/auth0-react';
 
 const router = createBrowserRouter([
+
   {
     path: "/",
     element: <App />,
+  },
+  {
+    path: "/login",
+    element: <Form />,
   },
   {
     path: "/trivia",
@@ -24,11 +31,13 @@ const router = createBrowserRouter([
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <ScoreProvider>
-      <QuestionProvider>
-        <RouterProvider router={router} />
-      </QuestionProvider>
-    </ScoreProvider>
-  </React.StrictMode>,
+  <Auth0Provider domain='dev-bb4l7j2i4vy8icmp.us.auth0.com'clientId='l9axReHv5PmDdivpuFOpDygZE5Yr2kJW' redirectUri={windows.location.origin}>
+    <React.StrictMode>
+      <ScoreProvider>
+        <QuestionProvider>
+          <RouterProvider router={router} />
+        </QuestionProvider>
+      </ScoreProvider>
+    </React.StrictMode>,
+  </Auth0Provider>
 )
